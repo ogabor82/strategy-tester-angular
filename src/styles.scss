@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+.as-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.as-card h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.as-card h3 {
+  color: #444;
+}
+
+.as-card p {
+  color: #666;
+  line-height: 1.6;
+}/* You can add global styles to this file, and also import other style files */

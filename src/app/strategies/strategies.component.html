@@ -1,1 +1,11 @@
-<p>strategies works!</p>
+<p>Strategies</p>
+<div class="strategies-list">
+  @for (strategy of strategies(); track strategy.id) {
+  <div class="as-card">
+    <h2>{{ strategy.name }}</h2>
+    <p>
+      {{ strategy.description }}
+    </p>
+  </div>
+  }
+</div>
