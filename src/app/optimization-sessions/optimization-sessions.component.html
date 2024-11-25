@@ -8,9 +8,13 @@
     <h2>{{ session.name }}</h2>
     <p>Status: {{ session.status }}</p>
     <p>Created: {{ session.created_at }}</p>
-    @if (session.completed_at) {
-    <p>Completed: {{ session.completed_at }}</p>
-    }
+
+    <a [routerLink]="['/session-results', session.id]" class="session-link">
+      <mat-icon fontIcon="menu">table_chart</mat-icon> View Results
+    </a>
+    <a [routerLink]="['/session-heatmaps', session.id]" class="session-link">
+      <mat-icon fontIcon="view_comfy_alt">heatmap</mat-icon> View Heatmaps
+    </a>
   </div>
   }
 </div>

@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
 import { OptimizationSession } from './optimization-session.model';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-optimization-sessions',
   standalone: true,
-  imports: [MatProgressSpinnerModule],
+  imports: [MatProgressSpinnerModule, RouterModule, MatIconModule],
   templateUrl: './optimization-sessions.component.html',
   styleUrl: './optimization-sessions.component.scss',
 })

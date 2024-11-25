@@ -1,0 +1,62 @@
+<p>Optimization Session Results</p>
+
+<div class="result-item">
+  <mat-table [dataSource]="results()">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="sessionId">
+      <mat-header-cell *matHeaderCellDef> Session ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.sessionId }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="start">
+      <mat-header-cell *matHeaderCellDef> Start </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.start | date : "shortDate" }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="end">
+      <mat-header-cell *matHeaderCellDef> End </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.end | date : "shortDate" }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="interval">
+      <mat-header-cell *matHeaderCellDef> Interval </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.interval }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="optimization_results">
+      <mat-header-cell *matHeaderCellDef>
+        Optimization Results
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.optimization_results }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="optimization_session_id">
+      <mat-header-cell *matHeaderCellDef>
+        Optimization Session ID
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.optimization_session_id }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="strategy_id">
+      <mat-header-cell *matHeaderCellDef> Strategy ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.strategy_id }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ticker">
+      <mat-header-cell *matHeaderCellDef> Ticker </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.ticker }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="timeframe_id">
+      <mat-header-cell *matHeaderCellDef> Timeframe ID </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.timeframe_id }}
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</div>
