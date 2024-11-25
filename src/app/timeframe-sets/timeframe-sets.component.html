@@ -1,0 +1,18 @@
+<p>Timeframe Sets</p>
+@if (isFetching()) {
+<mat-spinner></mat-spinner>
+} @else {
+<div class="timeframe-sets-list">
+  @for (timeframeSet of timeframeSets(); track timeframeSet.id) {
+  <div class="as-card">
+    <h2>{{ timeframeSet.name }}</h2>
+    <p>{{ timeframeSet.description }}</p>
+    <div class="timeframes">
+      @for (timeframe of timeframeSet.timeframes; track timeframe) {
+      <span class="timeframe-chip">{{ timeframe }}</span>
+      }
+    </div>
+  </div>
+  }
+</div>
+}
