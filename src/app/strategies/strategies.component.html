@@ -1,4 +1,7 @@
 <p>Strategies</p>
+@if (isFetching()) {
+<mat-spinner></mat-spinner>
+} @else {
 <div class="strategies-list">
   @for (strategy of strategies(); track strategy.id) {
   <div class="as-card">
@@ -9,3 +12,4 @@
   </div>
   }
 </div>
+}
