@@ -1,0 +1,17 @@
+<p>Optimization Sessions</p>
+@if (isFetching()) {
+<mat-spinner></mat-spinner>
+} @else {
+<div class="sessions-list">
+  @for (session of sessions(); track session.id) {
+  <div class="as-card">
+    <h2>{{ session.name }}</h2>
+    <p>Status: {{ session.status }}</p>
+    <p>Created: {{ session.created_at }}</p>
+    @if (session.completed_at) {
+    <p>Completed: {{ session.completed_at }}</p>
+    }
+  </div>
+  }
+</div>
+}
