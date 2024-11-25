@@ -1,1 +1,27 @@
-<p>optimization-session-heatmaps works!</p>
+<p>Optimization Session Heatmaps</p>
+
+<div class="heatmap-container">
+  @for (item of results(); track item.id) {
+  <div class="as-card">
+    <div>Ticker: {{ item.ticker }}</div>
+    <div>Strategy ID: {{ item.strategy_id }}</div>
+    <div>Start: {{ item.start }}</div>
+    <div>End: {{ item.end }}</div>
+    <div>Interval: {{ item.interval }}</div>
+    <iframe
+      width="500px"
+      height="500px"
+      [src]="
+        sanitizeUrl(
+          item.ticker,
+          item.strategy_id.toString(),
+          item.start.toString(),
+          item.end.toString(),
+          item.interval
+        )
+      "
+      title="Heatmap"
+    ></iframe>
+  </div>
+  }
+</div>
