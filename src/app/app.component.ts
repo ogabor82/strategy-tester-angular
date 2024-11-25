@@ -7,7 +7,7 @@ import { MenuComponent } from './menu/menu.component';
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [MenuComponent],
+  imports: [MenuComponent, RouterOutlet],
 })
 export class AppComponent {
   title = 'Dashboard';
