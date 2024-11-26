@@ -20,6 +20,10 @@
   &_odd {
     border-left: 3px solid #2b9c08;
   }
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
 }
 
 .table-first-column {
@@ -32,5 +36,4 @@
 
 .table-second-column {
   font-size: 14px;
-  padding: 16px;
 }
