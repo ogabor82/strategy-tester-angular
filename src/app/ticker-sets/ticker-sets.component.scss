@@ -1,0 +1,46 @@
+.upload-icon {
+  color: #2b9c08;
+  cursor: pointer;
+}
+
+.upload-icon_selected {
+  color: rgb(220, 219, 219);
+  cursor: default;
+  pointer-events: none;
+}
+
+.ticker-sets-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.table-row {
+  display: flex;
+  flex-direction: row;
+
+  gap: 10px;
+  border-bottom: 1px solid #e0e0e0;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  &_even {
+    border-left: 3px solid #ff3c00;
+  }
+
+  &_odd {
+    border-left: 3px solid #2b9c08;
+  }
+}
+
+.ticker-chip {
+  margin: 5px;
+  font-size: 4px;
+  height: 12px;
+  line-height: 12px;
+  text-transform: lowercase;
+  font-weight: 400;
+  padding: 2px;
+}

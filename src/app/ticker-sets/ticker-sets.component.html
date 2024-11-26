@@ -1,0 +1,36 @@
+<p>Ticker Sets</p>
+@if (isFetching()) {
+<mat-spinner></mat-spinner>
+} @else {
+<div class="ticker-sets-table">
+  @for (tickerSet of tickerSets(); track $index) {
+  <div
+    class="table-row"
+    [class.table-row_even]="$index % 2 === 0"
+    [class.table-row_odd]="$index % 2 === 1"
+  >
+    <div class="table-first-column">
+      <mat-icon
+        fontIcon="upload_2"
+        class="upload-icon"
+        [class.upload-icon_selected]="
+          selectedTickerSet?.name === tickerSet.name
+        "
+        (click)="selectTickerSet(tickerSet.name)"
+      ></mat-icon>
+    </div>
+    <div class="table-second-column">
+      {{ tickerSet.name }}
+      <div class="table-second-column-description">
+        {{ tickerSet.description }}
+      </div>
+    </div>
+    <div class="table-third-column">
+      @for (ticker of tickerSet.tickers; track $index) {
+      <mat-chip class="ticker-chip">{{ ticker }}</mat-chip>
+      }
+    </div>
+  </div>
+  }
+</div>
+}

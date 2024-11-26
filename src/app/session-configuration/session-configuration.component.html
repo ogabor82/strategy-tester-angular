@@ -1,11 +1,29 @@
 <div class="as-card">
   <h2>Session Configuration</h2>
 
-  <div class="configuration-content">
-    <label for="strategy">Strategy:</label>
-    <div class="configuration-item as-card as-card_inverse">
-      <h4>{{ sessionConfiguration.strategy?.name }}</h4>
-      <p>{{ sessionConfiguration.strategy?.description }}</p>
+  <div class="configuration-container">
+    <div class="configuration-content">
+      <label for="strategy">Strategy</label>
+      <div class="configuration-item as-card as-card_inverse">
+        <h4>{{ sessionConfiguration.strategy?.name }}</h4>
+        <p>{{ sessionConfiguration.strategy?.description }}</p>
+      </div>
+    </div>
+
+    <div class="configuration-content">
+      <label for="ticker-set">Ticker Set</label>
+      <div class="ticker-set configuration-item as-card as-card_inverse">
+        <h4>{{ sessionConfiguration.tickerSet?.name }}</h4>
+        <p>{{ sessionConfiguration.tickerSet?.description }}</p>
+        @for (ticker of sessionConfiguration.tickerSet?.tickers; track $index) {
+        <mat-chip class="ticker-chip"
+          >{{ ticker }}
+          <button matChipRemove aria-label="'remove ' + keyword">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        }
+      </div>
     </div>
   </div>
 </div>
