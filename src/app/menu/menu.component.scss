@@ -18,8 +18,13 @@
   color: #ffffff;
   text-decoration: none;
   padding: 12px 24px;
-  display: block;
   transition: background-color 0.3s;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-start;
 }
 
 .menu-item:hover {
