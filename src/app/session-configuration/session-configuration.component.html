@@ -2,9 +2,10 @@
   <h2>Session Configuration</h2>
 
   <div class="configuration-content">
-    <div class="configuration-item">
-      <label for="strategy">Strategy</label>
-      <div>{{ sessionConfiguration.strategy?.name }}</div>
+    <label for="strategy">Strategy:</label>
+    <div class="configuration-item as-card as-card_inverse">
+      <h4>{{ sessionConfiguration.strategy?.name }}</h4>
+      <p>{{ sessionConfiguration.strategy?.description }}</p>
     </div>
   </div>
 </div>
