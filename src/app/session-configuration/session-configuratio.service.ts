@@ -19,6 +19,10 @@ export class SessionConfigurationService {
     return this.sessionConfiguration;
   }
 
+  getStrategy(): Strategy | undefined {
+    return this.sessionConfiguration.strategy;
+  }
+
   setStrategy(strategy: Strategy): void {
     this.sessionConfiguration.strategy = strategy;
   }

@@ -15,7 +15,12 @@
       } @else {
       <mat-icon fontIcon="star_border" class="star-icon"></mat-icon>
       }
-      <input type="checkbox" />
+      <mat-icon
+        fontIcon="upload_2"
+        class="upload-icon"
+        [class.upload-icon_selected]="selectedStrategy?.id === strategy.id"
+        (click)="selectStrategy(strategy.id)"
+      ></mat-icon>
     </div>
     <div class="table-second-column">
       <h4>{{ strategy.name }}</h4>

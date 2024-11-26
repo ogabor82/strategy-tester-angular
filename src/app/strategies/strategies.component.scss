@@ -3,6 +3,17 @@
   cursor: pointer;
 }
 
+.upload-icon {
+  color: #2b9c08;
+  cursor: pointer;
+}
+
+.upload-icon_selected {
+  color: rgb(220, 219, 219);
+  cursor: default;
+  pointer-events: none;
+}
+
 .strategies-table {
   display: flex;
   flex-direction: column;

@@ -4,6 +4,7 @@ import { Strategy } from './strategy.model';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { map } from 'rxjs';
+import { SessionConfigurationService } from '../session-configuration/session-configuratio.service';
 @Component({
   selector: 'app-strategies',
   standalone: true,
@@ -16,6 +17,7 @@ export class StrategiesComponent implements OnInit {
   isFetching = signal(false);
   private httpClient = inject(HttpClient);
   private destroyRef = inject(DestroyRef);
+  private sessionConfigurationService = inject(SessionConfigurationService);
 
   ngOnInit() {
     this.isFetching.set(true);
@@ -42,5 +44,18 @@ export class StrategiesComponent implements OnInit {
         },
       });
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
+  }
+
+  get selectedStrategy(): Strategy | undefined {
+    return this.sessionConfigurationService.getStrategy();
+  }
+
+  selectStrategy(strategyId: number) {
+    const strategy = this.strategies().find(
+      (strategy) => strategy.id === strategyId
+    );
+    if (strategy) {
+      this.sessionConfigurationService.setStrategy(strategy);
+    }
   }
 }
