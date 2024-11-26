@@ -1,5 +1,36 @@
-.strategies-list {
+.star-icon {
+  color: #ffd700;
+  cursor: pointer;
+}
+
+.strategies-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-row {
   display: flex;
   flex-direction: row;
-  gap: 16px;
+  border-bottom: 1px solid #e0e0e0;
+
+  &_even {
+    border-left: 3px solid #ff3c00;
+  }
+
+  &_odd {
+    border-left: 3px solid #2b9c08;
+  }
+}
+
+.table-first-column {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-second-column {
+  font-size: 14px;
+  padding: 16px;
 }

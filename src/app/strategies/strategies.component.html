@@ -2,13 +2,25 @@
 @if (isFetching()) {
 <mat-spinner></mat-spinner>
 } @else {
-<div class="strategies-list">
+<div class="strategies-table">
   @for (strategy of strategies(); track strategy.id) {
-  <div class="as-card">
-    <h2>{{ strategy.name }}</h2>
-    <p>
-      {{ strategy.description }}
-    </p>
+  <div
+    class="table-row"
+    [class.table-row_even]="strategy.is_favorite"
+    [class.table-row_odd]="!strategy.is_favorite"
+  >
+    <div class="table-first-column">
+      @if (strategy.is_favorite) {
+      <mat-icon fontIcon="star" class="star-icon"></mat-icon>
+      } @else {
+      <mat-icon fontIcon="star_border" class="star-icon"></mat-icon>
+      }
+      <input type="checkbox" />
+    </div>
+    <div class="table-second-column">
+      <h2>{{ strategy.name }}</h2>
+      <p>{{ strategy.description }}</p>
+    </div>
   </div>
   }
 </div>
