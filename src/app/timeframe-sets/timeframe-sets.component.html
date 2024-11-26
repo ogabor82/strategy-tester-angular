@@ -8,8 +8,22 @@
     <h2>{{ timeframeSet.name }}</h2>
     <p>{{ timeframeSet.description }}</p>
     <div class="timeframes">
-      @for (timeframe of timeframeSet.timeframes; track timeframe) {
-      <span class="timeframe-chip">{{ timeframe }}</span>
+      @for (timeframe of timeframeSet.timeframes; track $index) {
+      <div
+        class="timeframe"
+        [class.timeframe_even]="$index % 2 === 0"
+        [class.timeframe_odd]="$index % 2 === 1"
+      >
+        <div>
+          <span class="timeframe-name"
+            >{{ timeframe.name }} ({{ timeframe.interval }})</span
+          >
+        </div>
+        <div>
+          <span class="timeframe-start">{{ timeframe.start }}</span> -
+          <span class="timeframe-end">{{ timeframe.end }}</span>
+        </div>
+      </div>
       }
     </div>
   </div>

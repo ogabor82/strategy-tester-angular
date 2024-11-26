@@ -18,3 +18,22 @@
   border-radius: 16px;
   font-size: 0.875rem;
 }
+
+.timeframe {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1rem;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  &_even {
+    border-left: 3px solid #ff3c00;
+  }
+
+  &_odd {
+    border-left: 3px solid #2b9c08;
+  }
+}

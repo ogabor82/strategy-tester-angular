@@ -19,7 +19,9 @@ export class TimeframeSetsComponent implements OnInit {
   ngOnInit() {
     this.isFetching.set(true);
     const subscription = this.httpClient
-      .get<TimeframeSet[]>('http://127.0.0.1:5000/timeframe-sets')
+      .get<TimeframeSet[]>(
+        'http://127.0.0.1:5000/timeframe-sets-with-timeframes'
+      )
       .subscribe({
         next: (data) => {
           this.timeframeSets.set(data);
