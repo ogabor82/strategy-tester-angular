@@ -6,6 +6,7 @@ import { OptimizationSessionsComponent } from './optimization-sessions/optimizat
 import { OptimizationSessionResultsComponent } from './optimization-session-results/optimization-session-results.component';
 import { OptimizationSessionHeatmapsComponent } from './optimization-session-heatmaps/optimization-session-heatmaps.component';
 import { TickerSetsComponent } from './ticker-sets/ticker-sets.component';
+import { BacktestSessionsComponent } from './backtest-sessions/backtest-sessions.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -13,6 +14,7 @@ export const routes: Routes = [
   { path: 'strategies', component: StrategiesComponent },
   { path: 'timeframe-sets', component: TimeframeSetsComponent },
   { path: 'optimization-sessions', component: OptimizationSessionsComponent },
+  { path: 'backtest-sessions', component: BacktestSessionsComponent },
   {
     path: 'session-results/:sessionId',
     component: OptimizationSessionResultsComponent,
