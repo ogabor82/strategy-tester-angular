@@ -5,7 +5,9 @@
 <div class="sessions-list">
   @for (session of sessions(); track session.id) {
   <div class="as-card">
-    <h2>{{ session.name }}</h2>
+    <a [routerLink]="['/backtest-session', session.id]">
+      <h2>{{ session.name }}</h2>
+    </a>
   </div>
   }
 </div>

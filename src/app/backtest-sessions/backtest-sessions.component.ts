@@ -2,11 +2,12 @@ import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { BacktestSession } from './backtest-session.model';
 import { HttpClient } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-backtest-sessions',
   standalone: true,
-  imports: [MatProgressSpinnerModule],
+  imports: [MatProgressSpinnerModule, RouterModule],
   templateUrl: './backtest-sessions.component.html',
   styleUrl: './backtest-sessions.component.scss',
 })

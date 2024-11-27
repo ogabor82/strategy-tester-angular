@@ -1,0 +1,24 @@
+
+ .table-row {
+    width: 100%;
+    border-bottom: 1px solid #e0e0e0;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+
+  }
+
+.slices-table {
+  .table-row:nth-of-type(even) {
+    td:first-child {
+      border-left: 3px solid #ff3c00;
+    }
+  }
+
+  .table-row:nth-of-type(odd) {
+    td:first-child {
+      border-left: 3px solid #2b9c08;
+    }
+  }
+}
