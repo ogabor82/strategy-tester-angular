@@ -1,1 +1,12 @@
-<p>backtest-sessions works!</p>
+<p>Backtest Sessions</p>
+@if (isFetching()) {
+<mat-spinner></mat-spinner>
+} @else {
+<div class="sessions-list">
+  @for (session of sessions(); track session.id) {
+  <div class="as-card">
+    <h2>{{ session.name }}</h2>
+  </div>
+  }
+</div>
+}
