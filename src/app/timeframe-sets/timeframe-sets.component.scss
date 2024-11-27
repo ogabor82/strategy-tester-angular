@@ -5,6 +5,16 @@
   padding: 1rem;
 }
 
+.timeframe-set-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
 .timeframes {
   display: flex;
   flex-wrap: wrap;
@@ -36,4 +46,15 @@
   &_odd {
     border-left: 3px solid #2b9c08;
   }
+}
+
+.upload-icon {
+  color: #2b9c08;
+  cursor: pointer;
+}
+
+.upload-icon_selected {
+  color: rgb(220, 219, 219);
+  cursor: default;
+  pointer-events: none;
 }

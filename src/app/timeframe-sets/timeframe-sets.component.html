@@ -5,8 +5,18 @@
 <div class="timeframe-sets-list">
   @for (timeframeSet of timeframeSets(); track timeframeSet.id) {
   <div class="as-card">
-    <h2>{{ timeframeSet.name }}</h2>
-    <p>{{ timeframeSet.description }}</p>
+    <div class="timeframe-set-header">
+      <h2>{{ timeframeSet.name }}</h2>
+      <p>{{ timeframeSet.description }}</p>
+      <mat-icon
+        fontIcon="upload_2"
+        class="upload-icon"
+        [class.upload-icon_selected]="
+          selectedTimeframeSet?.id === timeframeSet.id
+        "
+        (click)="selectTimeframeSet(timeframeSet.id)"
+      ></mat-icon>
+    </div>
     <div class="timeframes">
       @for (timeframe of timeframeSet.timeframes; track $index) {
       <div

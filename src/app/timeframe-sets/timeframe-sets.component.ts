@@ -2,11 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { TimeframeSet } from './timeframe-set.model';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SessionConfigurationService } from '../session-configuration/session-configuratio.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-timeframe-sets',
   standalone: true,
-  imports: [MatProgressSpinnerModule],
+  imports: [MatProgressSpinnerModule, MatIconModule],
   templateUrl: './timeframe-sets.component.html',
   styleUrl: './timeframe-sets.component.scss',
 })
@@ -15,6 +17,7 @@ export class TimeframeSetsComponent implements OnInit {
   isFetching = signal(false);
   private httpClient = inject(HttpClient);
   private destroyRef = inject(DestroyRef);
+  private sessionConfigurationService = inject(SessionConfigurationService);
 
   ngOnInit() {
     this.isFetching.set(true);
@@ -35,5 +38,16 @@ export class TimeframeSetsComponent implements OnInit {
         },
       });
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
+  }
+
+  get selectedTimeframeSet(): TimeframeSet | undefined {
+    return this.sessionConfigurationService.getTimeframeSet();
+  }
+
+  selectTimeframeSet(id: number) {
+    const timeframeSet = this.timeframeSets().find((t) => t.id === id);
+    if (timeframeSet) {
+      this.sessionConfigurationService.setTimeframeSet(timeframeSet);
+    }
   }
 }
