@@ -3,6 +3,7 @@ import { Strategy } from '../strategies/strategy.model';
 import { SessionConfiguration } from './session-configuration.model';
 import { TickerSet } from '../ticker-sets/ticker-set.model';
 import { TimeframeSet } from '../timeframe-sets/timeframe-set.model';
+import { BacktestSession } from '../backtest-sessions/backtest-session.model';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +28,7 @@ export class SessionConfigurationService {
       description: 'auto',
       timeframes: [],
     },
+    backtestSession: undefined,
   };
 
   constructor() {
@@ -72,5 +74,14 @@ export class SessionConfigurationService {
 
   getTimeframeSet(): TimeframeSet | undefined {
     return this.sessionConfiguration.timeframeSet;
+  }
+
+  setBacktestSession(backtestSession: BacktestSession) {
+    this.sessionConfiguration.backtestSession = backtestSession;
+    this.saveSessionConfiguration();
+  }
+
+  getBacktestSession(): BacktestSession | undefined {
+    return this.sessionConfiguration.backtestSession;
   }
 }

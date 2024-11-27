@@ -1,0 +1,17 @@
+.session-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.upload-icon_selected {
+  color: rgb(220, 219, 219);
+  cursor: default;
+  pointer-events: none;
+}
+
+.ticker-sets-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
