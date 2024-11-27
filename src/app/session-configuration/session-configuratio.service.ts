@@ -29,6 +29,20 @@ export class SessionConfigurationService {
     },
   };
 
+  constructor() {
+    const sessionConfiguration = localStorage.getItem('sessionConfiguration');
+    if (sessionConfiguration) {
+      this.sessionConfiguration = JSON.parse(sessionConfiguration);
+    }
+  }
+
+  private saveSessionConfiguration() {
+    localStorage.setItem(
+      'sessionConfiguration',
+      JSON.stringify(this.sessionConfiguration)
+    );
+  }
+
   getSessionConfiguration(): SessionConfiguration {
     return this.sessionConfiguration;
   }
@@ -39,10 +53,12 @@ export class SessionConfigurationService {
 
   setStrategy(strategy: Strategy): void {
     this.sessionConfiguration.strategy = strategy;
+    this.saveSessionConfiguration();
   }
 
   setTickerSet(tickerSet: TickerSet) {
     this.sessionConfiguration.tickerSet = tickerSet;
+    this.saveSessionConfiguration();
   }
 
   getTickerSet(): TickerSet | undefined {
@@ -51,6 +67,7 @@ export class SessionConfigurationService {
 
   setTimeframeSet(timeframeSet: TimeframeSet) {
     this.sessionConfiguration.timeframeSet = timeframeSet;
+    this.saveSessionConfiguration();
   }
 
   getTimeframeSet(): TimeframeSet | undefined {
