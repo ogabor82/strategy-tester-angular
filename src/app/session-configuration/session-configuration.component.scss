@@ -17,3 +17,18 @@
   flex-direction: row;
   gap: 10px;
 }
+
+.timeframe-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1rem;
+
+  &_even {
+    border-left: 3px solid #ff3c00;
+  }
+
+  &_odd {
+    border-left: 3px solid #2b9c08;
+  }
+}

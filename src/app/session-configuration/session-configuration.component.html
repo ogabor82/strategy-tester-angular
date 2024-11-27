@@ -31,6 +31,16 @@
       <div class="timeframe-set configuration-item as-card as-card_inverse">
         <h4>{{ sessionConfiguration.timeframeSet?.name }}</h4>
         <p>{{ sessionConfiguration.timeframeSet?.description }}</p>
+        @for (timeframe of sessionConfiguration.timeframeSet?.timeframes; track
+        $index) {
+        <div
+          class="timeframe-row"
+          [class.timeframe-row_even]="$index % 2 === 0"
+          [class.timeframe-row_odd]="$index % 2 === 1"
+        >
+          {{ timeframe.start }} - {{ timeframe.end }}
+        </div>
+        }
       </div>
     </div>
   </div>
