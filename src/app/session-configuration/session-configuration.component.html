@@ -7,6 +7,15 @@
       <div class="configuration-item as-card as-card_inverse">
         <h4>{{ sessionConfiguration.strategy?.name }}</h4>
         <p>{{ sessionConfiguration.strategy?.description }}</p>
+        @for (backtestSet of sessionConfiguration.strategy?.backtest_sets; track
+        $index) {
+        <div class="backtest-set-chip" (click)="selectBacktestSet(backtestSet)">
+          {{ backtestSet | json }}
+        </div>
+        }
+        <hr />
+        <h4>Backtest set</h4>
+        <p>{{ sessionConfiguration.strategyBacktestSet | json }}</p>
       </div>
     </div>
 

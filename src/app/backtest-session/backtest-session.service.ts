@@ -11,10 +11,14 @@ export class BacktestSessionService {
 
   runBacktest(sessionConfiguration: SessionConfiguration) {
     const backtestRequest = {
-      strategy: sessionConfiguration.strategy,
+      strategy: {
+        ...sessionConfiguration.strategy,
+        backtest_sets: undefined,
+      },
       tickers: sessionConfiguration.tickerSet?.tickers,
       timeframe_set: sessionConfiguration.timeframeSet,
       selected_session: sessionConfiguration.backtestSession,
+      backtest_set: sessionConfiguration.strategyBacktestSet,
       backtest_results: 'compact',
       backtest_plot: true,
     };

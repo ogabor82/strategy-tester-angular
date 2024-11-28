@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
-import { Strategy } from './strategy.model';
+import { Strategy, StrategyResponse } from './strategy.model';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { map } from 'rxjs';
@@ -22,12 +22,13 @@ export class StrategiesComponent implements OnInit {
   ngOnInit() {
     this.isFetching.set(true);
     const subscription = this.httpClient
-      .get<Strategy[]>('http://127.0.0.1:5000/strategies')
+      .get<StrategyResponse[]>('http://127.0.0.1:5000/strategies')
       .pipe(
         map((data) => {
           return data.map((strategy, index) => ({
             ...strategy,
             is_favorite: index % 2 === 0,
+            backtest_sets: JSON.parse(strategy.backtest_sets),
           }));
         })
       )
