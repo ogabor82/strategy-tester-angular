@@ -4,6 +4,11 @@
   justify-content: space-between;
 }
 
+.upload-icon {
+  color: #2b9c08;
+  cursor: pointer;
+}
+
 .upload-icon_selected {
   color: rgb(220, 219, 219);
   cursor: default;
@@ -14,4 +19,11 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.sessions-header {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
 }

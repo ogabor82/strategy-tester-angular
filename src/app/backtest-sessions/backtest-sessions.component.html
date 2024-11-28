@@ -1,4 +1,9 @@
-<p>Backtest Sessions</p>
+<div class="sessions-header">
+  <p>Backtest Sessions</p>
+  <button mat-raised-button color="primary" (click)="newBacktestSession()">
+    + Create Session
+  </button>
+</div>
 @if (isFetching()) {
 <mat-spinner></mat-spinner>
 } @else {
@@ -20,4 +25,9 @@
   </div>
   }
 </div>
+} @if (newDialogOpen()) {
+<app-backtest-session-new
+  (closeModal)="newDialogOpen.set(false)"
+  (createSession)="createSession($event)"
+></app-backtest-session-new>
 }

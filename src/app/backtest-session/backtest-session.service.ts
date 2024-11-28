@@ -23,4 +23,11 @@ export class BacktestSessionService {
       backtestRequest
     );
   }
+
+  createSession(session: { name: string; details: string }) {
+    return this.http.post<BacktestSession>(
+      'http://127.0.0.1:5000/backtest-sessions',
+      session
+    );
+  }
 }
