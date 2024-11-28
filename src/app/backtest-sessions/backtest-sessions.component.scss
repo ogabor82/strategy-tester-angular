@@ -1,7 +1,17 @@
+.sessions-list {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .session-card {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: fit-content;
+  width: 20%;
 }
 
 .upload-icon {
@@ -13,6 +23,10 @@
   color: rgb(220, 219, 219);
   cursor: default;
   pointer-events: none;
+}
+
+.delete-icon {
+  cursor: pointer;
 }
 
 .ticker-sets-table {

@@ -1,0 +1,16 @@
+<div class="backdrop" (click)="onCloseModal()">
+  <dialog
+    open
+    (click)="onStopPropagation($event)"
+    class="delete-session-dialog"
+  >
+    <h2>Delete Backtest Session</h2>
+    <p>Are you sure you want to delete this backtest session?</p>
+    <p>{{ session?.name }}</p>
+    <p>{{ session?.details }}</p>
+    <form (ngSubmit)="onSubmit()">
+      <button type="button" (click)="onCloseModal()">Cancel</button>
+      <button type="submit">Delete</button>
+    </form>
+  </dialog>
+</div>

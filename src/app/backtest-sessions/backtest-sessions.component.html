@@ -16,12 +16,21 @@
         <p>{{ session.details }}</p>
       </a>
     </div>
-    <mat-icon
-      fontIcon="upload_2"
-      class="upload-icon"
-      [class.upload-icon_selected]="selectedBacktestSession?.id === session.id"
-      (click)="selectBacktestSession(session)"
-    ></mat-icon>
+    <div class="session-card-actions">
+      <mat-icon
+        fontIcon="upload_2"
+        class="upload-icon"
+        [class.upload-icon_selected]="
+          selectedBacktestSession?.id === session.id
+        "
+        (click)="selectBacktestSession(session)"
+      ></mat-icon>
+      <mat-icon
+        fontIcon="delete"
+        class="delete-icon"
+        (click)="openDeleteDialog(session)"
+      ></mat-icon>
+    </div>
   </div>
   }
 </div>
@@ -30,4 +39,10 @@
   (closeModal)="newDialogOpen.set(false)"
   (createSession)="createSession($event)"
 ></app-backtest-session-new>
+} @if (deleteDialogOpen() && selectedBacktestSessionToDelete()) {
+<app-backtest-session-delete
+  [session]="selectedBacktestSessionToDelete()"
+  (closeModal)="deleteDialogOpen.set(false)"
+  (deleteSession)="deleteSession($event)"
+></app-backtest-session-delete>
 }

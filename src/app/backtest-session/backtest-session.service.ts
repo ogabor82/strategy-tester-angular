@@ -30,4 +30,8 @@ export class BacktestSessionService {
       session
     );
   }
+
+  deleteSession(id: number) {
+    return this.http.delete(`http://127.0.0.1:5000/backtest-sessions/${id}`);
+  }
 }

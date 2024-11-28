@@ -8,6 +8,7 @@ import { SessionConfigurationService } from '../session-configuration/session-co
 import { MatButtonModule } from '@angular/material/button';
 import { BacktestSessionNewComponent } from '../backtest-session-new/backtest-session-new.component';
 import { BacktestSessionService } from '../backtest-session/backtest-session.service';
+import { BacktestSessionDeleteComponent } from '../backtest-session-delete/backtest-session-delete.component';
 
 @Component({
   selector: 'app-backtest-sessions',
@@ -18,6 +19,7 @@ import { BacktestSessionService } from '../backtest-session/backtest-session.ser
     MatIconModule,
     MatButtonModule,
     BacktestSessionNewComponent,
+    BacktestSessionDeleteComponent,
   ],
   templateUrl: './backtest-sessions.component.html',
   styleUrl: './backtest-sessions.component.scss',
@@ -26,6 +28,10 @@ export class BacktestSessionsComponent {
   sessions = signal<BacktestSession[]>([]);
   isFetching = signal(false);
   newDialogOpen = signal(false);
+  deleteDialogOpen = signal(false);
+  selectedBacktestSessionToDelete = signal<BacktestSession | undefined>(
+    undefined
+  );
   private httpClient = inject(HttpClient);
   private destroyRef = inject(DestroyRef);
   private sessionConfigurationService = inject(SessionConfigurationService);
@@ -66,6 +72,18 @@ export class BacktestSessionsComponent {
     this.backtestSessionService.createSession(session).subscribe((data) => {
       this.sessions.set([...this.sessions(), data]);
       this.newDialogOpen.set(false);
+    });
+  }
+
+  openDeleteDialog(session: BacktestSession) {
+    this.selectedBacktestSessionToDelete.set(session);
+    this.deleteDialogOpen.set(true);
+  }
+
+  deleteSession(session: BacktestSession) {
+    this.backtestSessionService.deleteSession(session.id).subscribe(() => {
+      this.sessions.set(this.sessions().filter((s) => s.id !== session.id));
+      this.deleteDialogOpen.set(false);
     });
   }
 }
