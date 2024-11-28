@@ -33,6 +33,7 @@ export class BacktestSessionComponent {
     'max_drawdown',
     'sharpe_ratio',
     'trades',
+    'filename',
   ];
 
   ngOnInit() {

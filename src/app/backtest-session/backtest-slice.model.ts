@@ -16,4 +16,5 @@ export interface BacktestSlice {
   ticker: string;
   trades: number;
   win_rate: number;
+  filename: string;
 }
