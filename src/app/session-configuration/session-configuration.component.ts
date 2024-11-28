@@ -22,6 +22,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   styleUrl: './session-configuration.component.scss',
 })
 export class SessionConfigurationComponent {
+  protected readonly Object = Object;
   private backtestSessionService = inject(BacktestSessionService);
   isRunningBacktest = signal(false);
   constructor(

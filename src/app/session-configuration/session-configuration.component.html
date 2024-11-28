@@ -7,15 +7,25 @@
       <div class="configuration-item as-card as-card_inverse">
         <h4>{{ sessionConfiguration.strategy?.name }}</h4>
         <p>{{ sessionConfiguration.strategy?.description }}</p>
+        <h4>Configurations:</h4>
         @for (backtestSet of sessionConfiguration.strategy?.backtest_sets; track
         $index) {
         <div class="backtest-set-chip" (click)="selectBacktestSet(backtestSet)">
-          {{ backtestSet | json }}
+          <b>{{ backtestSet["name"] }}: </b>
+          @for (item of Object.entries(backtestSet); track item[0]) { @if
+          (item[0] !== "name") {
+          <span>{{ item[0] }}: {{ item[1] }}, </span>
+          } }
         </div>
         }
         <hr />
-        <h4>Backtest set</h4>
-        <p>{{ sessionConfiguration.strategyBacktestSet | json }}</p>
+        <h4>Selected configuration:</h4>
+        <h4>{{ sessionConfiguration.strategyBacktestSet?.['name'] }}</h4>
+        @if (sessionConfiguration.strategyBacktestSet) { @for (item of
+        Object.entries(sessionConfiguration.strategyBacktestSet); track item[0])
+        { @if (item[0] !== "name") {
+        <span>{{ item[0] }}: {{ item[1] }}, </span>
+        } } }
       </div>
     </div>
 
