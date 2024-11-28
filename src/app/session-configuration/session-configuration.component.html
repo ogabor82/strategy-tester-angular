@@ -62,8 +62,18 @@
         <p>{{ sessionConfiguration.backtestSession?.details }}</p>
       </div>
     </div>
-    <button mat-raised-button color="primary" (click)="runBacktest()">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="runBacktest()"
+      [disabled]="isRunningBacktest()"
+    >
       Run Backtest
     </button>
+    @if (isRunningBacktest()) {
+    <dialog open>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </dialog>
+    }
   </div>
 </div>

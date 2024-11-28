@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { SessionConfigurationService } from './session-configuratio.service';
 import { SessionConfiguration } from './session-configuration.model';
 import { MatChipsModule } from '@angular/material/chips';
@@ -7,15 +7,23 @@ import { MatButtonModule } from '@angular/material/button';
 import { BacktestSessionService } from '../backtest-session/backtest-session.service';
 import { JsonPipe } from '@angular/common';
 import { BacktestSet } from '../strategies/strategy.model';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 @Component({
   selector: 'app-session-configuration',
   standalone: true,
-  imports: [MatChipsModule, MatIconModule, MatButtonModule, JsonPipe],
+  imports: [
+    MatChipsModule,
+    MatIconModule,
+    MatButtonModule,
+    JsonPipe,
+    MatProgressBarModule,
+  ],
   templateUrl: './session-configuration.component.html',
   styleUrl: './session-configuration.component.scss',
 })
 export class SessionConfigurationComponent {
   private backtestSessionService = inject(BacktestSessionService);
+  isRunningBacktest = signal(false);
   constructor(
     private sessionConfigurationService: SessionConfigurationService
   ) {}
@@ -29,13 +37,20 @@ export class SessionConfigurationComponent {
   }
 
   runBacktest() {
+    this.isRunningBacktest.set(true);
     this.backtestSessionService
       .runBacktest(this.sessionConfiguration)
       .subscribe({
         next: (data) => {
           console.log(data);
         },
-        error: (error) => console.error(error),
+        complete: () => {
+          this.isRunningBacktest.set(false);
+        },
+        error: (error) => {
+          console.error(error);
+          this.isRunningBacktest.set(false);
+        },
       });
   }
 }
