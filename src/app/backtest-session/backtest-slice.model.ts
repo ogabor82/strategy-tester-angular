@@ -3,6 +3,7 @@ export interface BacktestSlice {
   name: string;
   details: string;
   backtest_session_id: number;
+  strategy_parameters: string;
   buyhold_return: number;
   configuration_id: number;
   end: string;

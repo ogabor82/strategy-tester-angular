@@ -11,11 +11,13 @@ import { ActivatedRoute } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { JsonPipe } from '@angular/common';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-backtest-session',
   standalone: true,
-  imports: [MatProgressSpinnerModule, MatTableModule, MatSortModule],
+  imports: [MatProgressSpinnerModule, MatTableModule, MatSortModule, JsonPipe],
   templateUrl: './backtest-session.component.html',
   styleUrl: './backtest-session.component.scss',
 })
@@ -30,6 +32,7 @@ export class BacktestSessionComponent {
     // 'id',
     'ticker',
     'strategy',
+    'strategy_parameters',
     'start',
     'end',
     'kelly_criterion',
@@ -70,6 +73,14 @@ export class BacktestSessionComponent {
     const subscription = this.httpClient
       .get<BacktestSlice[]>(
         `http://127.0.0.1:5000/backtest-sessions/${this.sessionId}`
+      )
+      .pipe(
+        map((data) =>
+          data.map((slice) => ({
+            ...slice,
+            strategy_parameters: JSON.parse(slice.strategy_parameters),
+          }))
+        )
       )
       .subscribe({
         next: (data) => {
