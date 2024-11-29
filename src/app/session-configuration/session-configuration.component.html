@@ -1,4 +1,7 @@
-<div class="as-card">
+<div
+  class="as-card session-configuration-card"
+  [@resizeAnimation]="isFullView() ? 'open' : 'closed'"
+>
   <h2>Session Configuration</h2>
 
   <div class="configuration-container">
@@ -12,8 +15,8 @@
     <div class="configuration-content">
       <label for="backtest-set">Configurations:</label>
       <div class="configuration-item as-card as-card_inverse">
-        @for (backtestSet of sessionConfiguration.strategy?.backtest_sets; track
-        $index) {
+        @if (isFullView()) { @for (backtestSet of
+        sessionConfiguration.strategy?.backtest_sets; track $index) {
         <div class="backtest-set-chip" (click)="selectBacktestSet(backtestSet)">
           <b>{{ backtestSet["name"] }}: </b>
           @for (item of Object.entries(backtestSet); track item[0]) { @if
@@ -23,7 +26,9 @@
         </div>
         }
         <hr />
+
         <h4>Selected configuration:</h4>
+        }
         <h4>{{ sessionConfiguration.strategyBacktestSet?.['name'] }}</h4>
         @if (sessionConfiguration.strategyBacktestSet) { @for (item of
         Object.entries(sessionConfiguration.strategyBacktestSet); track item[0])
@@ -35,7 +40,7 @@
     <div class="configuration-content">
       <label for="optimization-set">Optimization Set</label>
       <div class="optimization-set configuration-item as-card as-card_inverse">
-        @for (optimizationSet of
+        @if (isFullView()) { @for (optimizationSet of
         sessionConfiguration.strategy?.optimization_sets; track $index) {
         <div
           class="optimization-set-chip"
@@ -57,7 +62,9 @@
         </div>
         }
         <hr />
+
         <h4>Selected configuration:</h4>
+        }
         <h4>{{ sessionConfiguration.strategyOptimizationSet?.['name'] }}</h4>
         @if (sessionConfiguration.strategyOptimizationSet &&
         sessionConfiguration.strategyOptimizationSet["config"]) { @for (item of
@@ -76,6 +83,19 @@
         } }
       </div>
     </div>
+    @if (isFullView()) {
+    <mat-icon
+      fontIcon="close_fullscreen"
+      class="full-view-toggle"
+      (click)="toggleFullView()"
+    ></mat-icon>
+    } @else {
+    <mat-icon
+      fontIcon="fullscreen"
+      class="full-view-toggle"
+      (click)="toggleFullView()"
+    ></mat-icon>
+    }
   </div>
 
   <div class="configuration-container">

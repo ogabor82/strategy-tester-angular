@@ -16,6 +16,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatIconModule,
     MatButtonModule,
     MatProgressBarModule,
+    MatIconModule,
   ],
   templateUrl: './session-configuration.component.html',
   styleUrl: './session-configuration.component.scss',
@@ -24,6 +25,7 @@ export class SessionConfigurationComponent {
   protected readonly Object = Object;
   private backtestSessionService = inject(BacktestSessionService);
   isRunningBacktest = signal(false);
+  isFullView = signal(false);
   constructor(
     private sessionConfigurationService: SessionConfigurationService
   ) {}
@@ -40,6 +42,10 @@ export class SessionConfigurationComponent {
     this.sessionConfigurationService.setStrategyOptimizationSet(
       optimizationSet
     );
+  }
+
+  toggleFullView() {
+    this.isFullView.update((value) => !value);
   }
 
   runBacktest() {
