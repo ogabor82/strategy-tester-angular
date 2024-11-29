@@ -120,6 +120,15 @@
         <p>{{ sessionConfiguration.backtestSession?.details }}</p>
       </div>
     </div>
+    <div class="configuration-content">
+      <label for="optimization-session">Optimization Session</label>
+      <div
+        class="optimization-session configuration-item as-card as-card_inverse"
+      >
+        <h4>{{ sessionConfiguration.optimizationSession?.name }}</h4>
+        <p>{{ sessionConfiguration.optimizationSession?.details }}</p>
+      </div>
+    </div>
     <button
       mat-raised-button
       color="primary"
