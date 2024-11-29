@@ -4,7 +4,7 @@ import { Strategy, StrategyResponse } from './strategy.model';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { map } from 'rxjs';
-import { SessionConfigurationService } from '../session-configuration/session-configuratio.service';
+import { SessionConfigurationService } from '../session-configuration/session-configuration.service';
 @Component({
   selector: 'app-strategies',
   standalone: true,
@@ -29,6 +29,7 @@ export class StrategiesComponent implements OnInit {
             ...strategy,
             is_favorite: index % 2 === 0,
             backtest_sets: JSON.parse(strategy.backtest_sets),
+            optimization_sets: JSON.parse(strategy.optimization_sets),
           }));
         })
       )

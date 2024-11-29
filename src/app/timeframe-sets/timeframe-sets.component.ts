@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { TimeframeSet } from './timeframe-set.model';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { SessionConfigurationService } from '../session-configuration/session-configuratio.service';
+import { SessionConfigurationService } from '../session-configuration/session-configuration.service';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({

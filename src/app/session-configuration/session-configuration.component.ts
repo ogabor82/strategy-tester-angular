@@ -1,12 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
-import { SessionConfigurationService } from './session-configuratio.service';
+import { SessionConfigurationService } from './session-configuration.service';
 import { SessionConfiguration } from './session-configuration.model';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { BacktestSessionService } from '../backtest-session/backtest-session.service';
 import { JsonPipe } from '@angular/common';
-import { BacktestSet } from '../strategies/strategy.model';
+import { BacktestSet, OptimizationSet } from '../strategies/strategy.model';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 @Component({
   selector: 'app-session-configuration',
@@ -15,7 +15,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatChipsModule,
     MatIconModule,
     MatButtonModule,
-    JsonPipe,
     MatProgressBarModule,
   ],
   templateUrl: './session-configuration.component.html',
@@ -35,6 +34,12 @@ export class SessionConfigurationComponent {
 
   selectBacktestSet(backtestSet: BacktestSet) {
     this.sessionConfigurationService.setStrategyBacktestSet(backtestSet);
+  }
+
+  selectOptimizationSet(optimizationSet: OptimizationSet) {
+    this.sessionConfigurationService.setStrategyOptimizationSet(
+      optimizationSet
+    );
   }
 
   runBacktest() {

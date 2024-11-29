@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BacktestSet, Strategy } from '../strategies/strategy.model';
+import {
+  BacktestSet,
+  OptimizationSet,
+  Strategy,
+} from '../strategies/strategy.model';
 import { SessionConfiguration } from './session-configuration.model';
 import { TickerSet } from '../ticker-sets/ticker-set.model';
 import { TimeframeSet } from '../timeframe-sets/timeframe-set.model';
@@ -16,9 +20,15 @@ export class SessionConfigurationService {
       description: 'auto',
       is_favorite: false,
       backtest_sets: [],
+      optimization_sets: [],
     },
     strategyBacktestSet: {
       name: 'auto',
+    },
+    strategyOptimizationSet: {
+      name: 'auto',
+      config: {},
+      variables: {},
     },
     tickerSet: {
       id: 1,
@@ -91,6 +101,11 @@ export class SessionConfigurationService {
 
   setStrategyBacktestSet(backtestSet: BacktestSet) {
     this.sessionConfiguration.strategyBacktestSet = backtestSet;
+    this.saveSessionConfiguration();
+  }
+
+  setStrategyOptimizationSet(optimizationSet: OptimizationSet) {
+    this.sessionConfiguration.strategyOptimizationSet = optimizationSet;
     this.saveSessionConfiguration();
   }
 }

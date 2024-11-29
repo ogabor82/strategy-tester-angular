@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { SessionConfigurationService } from '../session-configuration/session-configuratio.service';
+import { SessionConfigurationService } from '../session-configuration/session-configuration.service';
 import { MatButtonModule } from '@angular/material/button';
 import { BacktestSessionNewComponent } from '../backtest-session-new/backtest-session-new.component';
 import { BacktestSessionService } from '../backtest-session/backtest-session.service';

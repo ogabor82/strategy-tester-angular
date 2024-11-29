@@ -7,7 +7,11 @@
       <div class="configuration-item as-card as-card_inverse">
         <h4>{{ sessionConfiguration.strategy?.name }}</h4>
         <p>{{ sessionConfiguration.strategy?.description }}</p>
-        <h4>Configurations:</h4>
+      </div>
+    </div>
+    <div class="configuration-content">
+      <label for="backtest-set">Configurations:</label>
+      <div class="configuration-item as-card as-card_inverse">
         @for (backtestSet of sessionConfiguration.strategy?.backtest_sets; track
         $index) {
         <div class="backtest-set-chip" (click)="selectBacktestSet(backtestSet)">
@@ -28,7 +32,35 @@
         } } }
       </div>
     </div>
+    <div class="configuration-content">
+      <label for="optimization-set">Optimization Set</label>
+      <div class="optimization-set configuration-item as-card as-card_inverse">
+        @for (optimizationSet of
+        sessionConfiguration.strategy?.optimization_sets; track $index) {
+        <div
+          class="optimization-set-chip"
+          (click)="selectOptimizationSet(optimizationSet)"
+        >
+          <b>{{ optimizationSet["name"] }}: </b>
+          @for (item of Object.entries(optimizationSet["config"]); track
+          item[0]) {
+          <span>{{ item[0] }}: {{ item[1] }}, </span>
+          }<br />
+          <b>variables: </b>
+          @for (item of Object.entries(optimizationSet["variables"]); track
+          item[0]) {
+          <span
+            >{{ item[0] }}: {{ item[1].from }} - {{ item[1].to }} (step:
+            {{ item[1].step }})
+          </span>
+          }
+        </div>
+        }
+      </div>
+    </div>
+  </div>
 
+  <div class="configuration-container">
     <div class="configuration-content">
       <label for="ticker-set">Ticker Set</label>
       <div class="ticker-set configuration-item as-card as-card_inverse">
@@ -62,9 +94,7 @@
         }
       </div>
     </div>
-  </div>
 
-  <div class="configuration-container">
     <div class="configuration-content">
       <label for="backtest-session">Backtest Session</label>
       <div class="backtest-session configuration-item as-card as-card_inverse">

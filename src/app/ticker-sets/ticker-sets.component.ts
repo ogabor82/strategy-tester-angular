@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { TickerSet } from './ticker-set.model';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
-import { SessionConfigurationService } from '../session-configuration/session-configuratio.service';
+import { SessionConfigurationService } from '../session-configuration/session-configuration.service';
 import { MatChipsModule } from '@angular/material/chips';
 @Component({
   selector: 'app-ticker-sets',
