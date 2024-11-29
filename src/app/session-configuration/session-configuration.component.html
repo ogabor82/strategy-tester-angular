@@ -56,6 +56,24 @@
           }
         </div>
         }
+        <hr />
+        <h4>Selected configuration:</h4>
+        <h4>{{ sessionConfiguration.strategyOptimizationSet?.['name'] }}</h4>
+        @if (sessionConfiguration.strategyOptimizationSet &&
+        sessionConfiguration.strategyOptimizationSet["config"]) { @for (item of
+        Object.entries(sessionConfiguration.strategyOptimizationSet["config"]);
+        track item[0]) {
+        <span>{{ item[0] }}: {{ item[1] }}, </span>
+        }<br />
+        <b>variables: </b>
+        @for (item of
+        Object.entries(sessionConfiguration.strategyOptimizationSet["variables"]);
+        track item[0]) {
+        <span
+          >{{ item[0] }}: {{ item[1].from }} - {{ item[1].to }} (step:
+          {{ item[1].step }})
+        </span>
+        } }
       </div>
     </div>
   </div>
