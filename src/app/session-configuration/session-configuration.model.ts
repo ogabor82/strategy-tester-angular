@@ -1,4 +1,5 @@
 import { BacktestSession } from '../backtest-sessions/backtest-session.model';
+import { OptimizationSession } from '../optimization-sessions/optimization-session.model';
 import {
   BacktestSet,
   OptimizationSet,
@@ -14,4 +15,5 @@ export interface SessionConfiguration {
   tickerSet: TickerSet | undefined;
   timeframeSet: TimeframeSet | undefined;
   backtestSession: BacktestSession | undefined;
+  optimizationSession: OptimizationSession | undefined;
 }

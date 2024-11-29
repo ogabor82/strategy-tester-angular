@@ -5,9 +5,18 @@
 <div class="sessions-list">
   @for (session of sessions(); track session.id) {
   <div class="as-card">
-    <h2>{{ session.name }}</h2>
-    <p>Status: {{ session.status }}</p>
-    <p>Created: {{ session.created_at }}</p>
+    <div class="session-card-header">
+      <h2>{{ session.name }}</h2>
+      <mat-icon
+        fontIcon="upload_2"
+        class="upload-icon"
+        [class.upload-icon_selected]="
+          selectedOptimizationSession?.id === session.id
+        "
+        (click)="selectOptimizationSession(session)"
+      ></mat-icon>
+    </div>
+    <p>{{ session.details }}</p>
 
     <a [routerLink]="['/session-results', session.id]" class="session-link">
       <mat-icon fontIcon="menu">table_chart</mat-icon> View Results

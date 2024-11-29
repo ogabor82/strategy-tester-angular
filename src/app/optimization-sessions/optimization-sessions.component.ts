@@ -4,6 +4,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { OptimizationSession } from './optimization-session.model';
 import { RouterModule } from '@angular/router';
+import { SessionConfigurationService } from '../session-configuration/session-configuration.service';
 
 @Component({
   selector: 'app-optimization-sessions',
@@ -17,6 +18,7 @@ export class OptimizationSessionsComponent implements OnInit {
   isFetching = signal(false);
   private httpClient = inject(HttpClient);
   private destroyRef = inject(DestroyRef);
+  private sessionConfigurationService = inject(SessionConfigurationService);
 
   ngOnInit() {
     this.isFetching.set(true);
@@ -35,5 +37,15 @@ export class OptimizationSessionsComponent implements OnInit {
         },
       });
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
+  }
+
+  get selectedOptimizationSession() {
+    return this.sessionConfigurationService.getOptimizationSession();
+  }
+
+  selectOptimizationSession(optimizationSession: OptimizationSession) {
+    this.sessionConfigurationService.setOptimizationSession(
+      optimizationSession
+    );
   }
 }

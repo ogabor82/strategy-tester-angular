@@ -1,1 +1,24 @@
+.sessions-list {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+}
 
+.session-card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.upload-icon {
+  color: #2b9c08;
+  cursor: pointer;
+}
+
+.upload-icon_selected {
+  color: rgb(220, 219, 219);
+  cursor: default;
+  pointer-events: none;
+}

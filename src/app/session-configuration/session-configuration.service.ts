@@ -8,6 +8,7 @@ import { SessionConfiguration } from './session-configuration.model';
 import { TickerSet } from '../ticker-sets/ticker-set.model';
 import { TimeframeSet } from '../timeframe-sets/timeframe-set.model';
 import { BacktestSession } from '../backtest-sessions/backtest-session.model';
+import { OptimizationSession } from '../optimization-sessions/optimization-session.model';
 
 @Injectable({
   providedIn: 'root',
@@ -43,6 +44,7 @@ export class SessionConfigurationService {
       timeframes: [],
     },
     backtestSession: undefined,
+    optimizationSession: undefined,
   };
 
   constructor() {
@@ -106,6 +108,15 @@ export class SessionConfigurationService {
 
   setStrategyOptimizationSet(optimizationSet: OptimizationSet) {
     this.sessionConfiguration.strategyOptimizationSet = optimizationSet;
+    this.saveSessionConfiguration();
+  }
+
+  getOptimizationSession(): OptimizationSession | undefined {
+    return this.sessionConfiguration.optimizationSession;
+  }
+
+  setOptimizationSession(optimizationSession: OptimizationSession) {
+    this.sessionConfiguration.optimizationSession = optimizationSession;
     this.saveSessionConfiguration();
   }
 }
