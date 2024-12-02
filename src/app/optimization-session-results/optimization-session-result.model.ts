@@ -7,6 +7,7 @@ export interface OptimizationSessionResult {
   optimization_results: string;
   optimization_session_id: number;
   strategy_id: number;
+  strategy_name: string;
   ticker: string;
   timeframe_id: number | null;
 }

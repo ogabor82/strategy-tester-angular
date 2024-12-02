@@ -17,15 +17,13 @@ export class OptimizationSessionResultsComponent {
   private httpClient = inject(HttpClient);
   results = signal<OptimizationSessionResult[]>([]);
   displayedColumns: string[] = [
-    'id',
-    'sessionId',
+    'ticker',
+    'strategy_name',
+    'optimization_results',
     'start',
     'end',
     'interval',
-    'optimization_results',
     'optimization_session_id',
-    'strategy_id',
-    'ticker',
     'timeframe_id',
   ];
 
