@@ -18,6 +18,11 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let element">
         {{ element.optimization_results }}
+        <mat-icon
+          fontIcon="upload_2"
+          class="upload-icon"
+          (click)="selectOptimizationResult(element.optimization_results)"
+        ></mat-icon>
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="start">

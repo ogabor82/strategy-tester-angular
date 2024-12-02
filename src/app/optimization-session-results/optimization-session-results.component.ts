@@ -5,6 +5,8 @@ import { OptimizationSessionResult } from './optimization-session-result.model';
 import { DatePipe } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { SessionConfigurationService } from '../session-configuration/session-configuration.service';
+import { BacktestSet } from '../strategies/strategy.model';
 @Component({
   selector: 'app-optimization-session-results',
   standalone: true,
@@ -16,6 +18,8 @@ export class OptimizationSessionResultsComponent {
   sessionId = inject(ActivatedRoute).snapshot.params['sessionId'];
   private httpClient = inject(HttpClient);
   results = signal<OptimizationSessionResult[]>([]);
+  private sessionConfigurationService = inject(SessionConfigurationService);
+
   displayedColumns: string[] = [
     'ticker',
     'strategy_name',
@@ -33,5 +37,12 @@ export class OptimizationSessionResultsComponent {
         `http://127.0.0.1:5000/optimization-sessions/${this.sessionId}`
       )
       .subscribe((data) => this.results.set(data));
+  }
+
+  selectOptimizationResult(result: string) {
+    console.log(JSON.parse(result));
+    this.sessionConfigurationService.setStrategyBacktestSet(
+      JSON.parse(result) as unknown as BacktestSet
+    );
   }
 }
