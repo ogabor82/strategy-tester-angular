@@ -11,13 +11,19 @@ import { ActivatedRoute } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
-import { JsonPipe } from '@angular/common';
+import { JsonPipe, DatePipe } from '@angular/common';
 import { map } from 'rxjs';
 
 @Component({
   selector: 'app-backtest-session',
   standalone: true,
-  imports: [MatProgressSpinnerModule, MatTableModule, MatSortModule, JsonPipe],
+  imports: [
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatSortModule,
+    JsonPipe,
+    DatePipe,
+  ],
   templateUrl: './backtest-session.component.html',
   styleUrl: './backtest-session.component.scss',
 })
