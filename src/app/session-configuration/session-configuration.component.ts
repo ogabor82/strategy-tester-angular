@@ -8,6 +8,7 @@ import { BacktestSessionService } from '../backtest-session/backtest-session.ser
 import { JsonPipe } from '@angular/common';
 import { BacktestSet, OptimizationSet } from '../strategies/strategy.model';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { OptimizationSessionService } from '../optimization-sessions/optimization-session.service';
 @Component({
   selector: 'app-session-configuration',
   standalone: true,
@@ -24,7 +25,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 export class SessionConfigurationComponent {
   protected readonly Object = Object;
   private backtestSessionService = inject(BacktestSessionService);
+  private optimizationSessionService = inject(OptimizationSessionService);
   isRunningBacktest = signal(false);
+  isRunningOptimization = signal(false);
   isFullView = signal(false);
   constructor(
     private sessionConfigurationService: SessionConfigurationService
@@ -62,6 +65,24 @@ export class SessionConfigurationComponent {
         error: (error) => {
           console.error(error);
           this.isRunningBacktest.set(false);
+        },
+      });
+  }
+
+  runOptimization() {
+    this.isRunningOptimization.set(true);
+    this.optimizationSessionService
+      .runOptimization(this.sessionConfiguration)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+        },
+        complete: () => {
+          this.isRunningOptimization.set(false);
+        },
+        error: (error) => {
+          console.error(error);
+          this.isRunningOptimization.set(false);
         },
       });
   }

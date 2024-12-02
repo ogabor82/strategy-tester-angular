@@ -154,7 +154,15 @@
     >
       Run Backtest
     </button>
-    @if (isRunningBacktest()) {
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="runOptimization()"
+      [disabled]="isRunningOptimization()"
+    >
+      Run Optimization
+    </button>
+    @if (isRunningBacktest() || isRunningOptimization()) {
     <dialog open>
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </dialog>
