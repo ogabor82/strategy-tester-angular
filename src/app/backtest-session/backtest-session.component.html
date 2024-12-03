@@ -57,12 +57,14 @@
     >
       Return
     </th>
-    <td mat-cell *matCellDef="let element">{{ element.return }}</td>
+    <td mat-cell *matCellDef="let element">
+      {{ element.return | number : "1.2-2" }}%
+    </td>
   </ng-container>
   <ng-container matColumnDef="buyhold_return">
     <th mat-header-cell *matHeaderCellDef>Buy and Hold Return</th>
     <td mat-cell *matCellDef="let element">
-      {{ element.buyhold_return }}
+      {{ element.buyhold_return | number : "1.2-2" }}%
     </td>
   </ng-container>
   <ng-container matColumnDef="win_rate">
