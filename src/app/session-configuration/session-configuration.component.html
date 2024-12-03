@@ -49,13 +49,13 @@
           <span>{{ item[0] }}: {{ item[1] }}, </span>
           }<br />
           <b>variables: </b>
-          @for (item of Object.entries(optimizationSet["variables"]); track
-          item[0]) {
+          @if (optimizationSet["variables"]) { @for (item of
+          Object.entries(optimizationSet["variables"]); track item[0]) {
           <span
             >{{ item[0] }}: {{ item[1].from }} - {{ item[1].to }} (step:
             {{ item[1].step }})
           </span>
-          }
+          } }
         </div>
         }
         <hr />
@@ -70,14 +70,15 @@
         <span>{{ item[0] }}: {{ item[1] }}, </span>
         }<br />
         <b>variables: </b>
-        @for (item of
+        @if (sessionConfiguration.strategyOptimizationSet["variables"]) { @for
+        (item of
         Object.entries(sessionConfiguration.strategyOptimizationSet["variables"]);
         track item[0]) {
         <span
           >{{ item[0] }}: {{ item[1].from }} - {{ item[1].to }} (step:
           {{ item[1].step }})
         </span>
-        } }
+        } } }
       </div>
     </div>
     @if (isFullView()) {
