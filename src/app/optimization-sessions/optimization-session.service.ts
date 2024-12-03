@@ -26,4 +26,11 @@ export class OptimizationSessionService {
       optimizationRequest
     );
   }
+
+  createSession(session: { name: string; details: string }) {
+    return this.http.post<OptimizationSession>(
+      'http://127.0.0.1:5000/optimization-sessions',
+      session
+    );
+  }
 }

@@ -1,4 +1,7 @@
 <p>Optimization Sessions</p>
+<button mat-raised-button color="primary" (click)="newOptimizationSession()">
+  + Create Session
+</button>
 @if (isFetching()) {
 <mat-spinner></mat-spinner>
 } @else {
@@ -27,4 +30,9 @@
   </div>
   }
 </div>
+} @if (newDialogOpen()) {
+<app-optimization-session-new
+  (closeModal)="newDialogOpen.set(false)"
+  (createSession)="createSession($event)"
+></app-optimization-session-new>
 }
