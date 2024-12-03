@@ -7,10 +7,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { SessionConfigurationService } from '../session-configuration/session-configuration.service';
 import { BacktestSet } from '../strategies/strategy.model';
+import { map } from 'rxjs';
+import { JsonPipe } from '@angular/common';
 @Component({
   selector: 'app-optimization-session-results',
   standalone: true,
-  imports: [MatTableModule, DatePipe, MatIconModule],
+  imports: [MatTableModule, DatePipe, MatIconModule, JsonPipe],
   templateUrl: './optimization-session-results.component.html',
   styleUrl: './optimization-session-results.component.scss',
 })
@@ -23,12 +25,11 @@ export class OptimizationSessionResultsComponent {
   displayedColumns: string[] = [
     'ticker',
     'strategy_name',
-    'optimization_results',
+    'best_params',
+    'metrics',
     'start',
     'end',
     'interval',
-    'optimization_session_id',
-    'timeframe_id',
   ];
 
   ngOnInit() {
@@ -36,13 +37,27 @@ export class OptimizationSessionResultsComponent {
       .get<OptimizationSessionResult[]>(
         `http://127.0.0.1:5000/optimization-sessions/${this.sessionId}`
       )
+      .pipe(
+        map((data) =>
+          data.map((result) => {
+            const best_params = JSON.parse(
+              result.optimization_results
+            ).best_params;
+            const metrics = JSON.parse(result.optimization_results).metrics;
+            return {
+              ...result,
+              best_params,
+              metrics,
+            };
+          })
+        )
+      )
       .subscribe((data) => this.results.set(data));
   }
 
   selectOptimizationResult(result: string) {
-    console.log(JSON.parse(result));
     this.sessionConfigurationService.setStrategyBacktestSet(
-      JSON.parse(result) as unknown as BacktestSet
+      result as unknown as BacktestSet
     );
   }
 }

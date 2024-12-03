@@ -12,19 +12,26 @@
         {{ element.strategy_name }}
       </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="optimization_results">
-      <mat-header-cell *matHeaderCellDef>
-        Optimization Results
-      </mat-header-cell>
+
+    <ng-container matColumnDef="best_params">
+      <mat-header-cell *matHeaderCellDef> Best Params </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        {{ element.optimization_results }}
+        <div>{{ element.best_params | json }}</div>
         <mat-icon
           fontIcon="upload_2"
           class="upload-icon"
-          (click)="selectOptimizationResult(element.optimization_results)"
+          (click)="selectOptimizationResult(element.best_params)"
         ></mat-icon>
       </mat-cell>
     </ng-container>
+
+    <ng-container matColumnDef="metrics">
+      <mat-header-cell *matHeaderCellDef> Metrics </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div>{{ element.metrics | json }}</div>
+      </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="start">
       <mat-header-cell *matHeaderCellDef> Start </mat-header-cell>
       <mat-cell *matCellDef="let element">
@@ -42,21 +49,6 @@
       <mat-cell *matCellDef="let element"> {{ element.interval }} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="optimization_session_id">
-      <mat-header-cell *matHeaderCellDef>
-        Optimization Session ID
-      </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        {{ element.optimization_session_id }}
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="timeframe_id">
-      <mat-header-cell *matHeaderCellDef> Timeframe ID </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        {{ element.timeframe_id }}
-      </mat-cell>
-    </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
