@@ -18,6 +18,11 @@
         "
         (click)="selectOptimizationSession(session)"
       ></mat-icon>
+      <mat-icon
+        fontIcon="delete"
+        class="delete-icon"
+        (click)="openDeleteDialog(session)"
+      ></mat-icon>
     </div>
     <p>{{ session.details }}</p>
 
@@ -35,4 +40,10 @@
   (closeModal)="newDialogOpen.set(false)"
   (createSession)="createSession($event)"
 ></app-optimization-session-new>
+} @if (deleteDialogOpen() && selectedOptimizationSessionToDelete()) {
+<app-optimization-session-delete
+  [session]="selectedOptimizationSessionToDelete()"
+  (closeModal)="deleteDialogOpen.set(false)"
+  (deleteSession)="deleteSession($event)"
+></app-optimization-session-delete>
 }
