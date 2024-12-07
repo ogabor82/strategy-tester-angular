@@ -105,7 +105,11 @@
         @for (ticker of sessionConfiguration.tickerSet?.tickers; track $index) {
         <mat-chip class="ticker-chip"
           >{{ ticker }}
-          <button matChipRemove aria-label="'remove ' + keyword">
+          <button
+            matChipRemove
+            aria-label="'remove ' + keyword"
+            (click)="removeTicker(ticker)"
+          >
             <mat-icon>cancel</mat-icon>
           </button>
         </mat-chip>

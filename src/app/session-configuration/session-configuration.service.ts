@@ -119,4 +119,12 @@ export class SessionConfigurationService {
     this.sessionConfiguration.optimizationSession = optimizationSession;
     this.saveSessionConfiguration();
   }
+
+  removeTicker(ticker: string) {
+    if (this.sessionConfiguration.tickerSet) {
+      this.sessionConfiguration.tickerSet.tickers =
+        this.sessionConfiguration.tickerSet.tickers.filter((t) => t !== ticker);
+    }
+    this.saveSessionConfiguration();
+  }
 }

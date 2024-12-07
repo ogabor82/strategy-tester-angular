@@ -86,4 +86,8 @@ export class SessionConfigurationComponent {
         },
       });
   }
+
+  removeTicker(ticker: string) {
+    this.sessionConfigurationService.removeTicker(ticker);
+  }
 }
