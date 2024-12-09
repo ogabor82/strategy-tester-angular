@@ -19,4 +19,9 @@
   </div>
   }
 </div>
+} @if (newDialogOpen()) {
+<app-project-new
+  (closeModal)="newDialogOpen.set(false)"
+  (createProject)="createProject($event)"
+></app-project-new>
 }

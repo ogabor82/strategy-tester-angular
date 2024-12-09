@@ -1,0 +1,26 @@
+<div class="backdrop" (click)="onCloseModal()">
+  <dialog open (click)="onStopPropagation($event)" class="new-project-dialog">
+    <h2>Create Project</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" [(ngModel)]="enteredName" />
+      </div>
+      <div class="form-group">
+        <label for="goal">Goal</label>
+        <input type="text" id="goal" name="goal" [(ngModel)]="enteredGoal" />
+      </div>
+      <div class="form-group">
+        <label for="details">Details</label>
+        <input
+          type="text"
+          id="details"
+          name="details"
+          [(ngModel)]="enteredDetails"
+        />
+      </div>
+      <button type="submit">Create</button>
+      <button type="button" (click)="onCloseModal()">Cancel</button>
+    </form>
+  </dialog>
+</div>

@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
+import { ProjectsService } from './projects.service';
+import { ProjectNewComponent } from '../project-new/project-new.component';
 
 @Component({
   selector: 'app-projects',
@@ -18,6 +20,7 @@ import { RouterLink } from '@angular/router';
     MatProgressSpinnerModule,
     MatCardModule,
     RouterLink,
+    ProjectNewComponent,
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
@@ -27,6 +30,8 @@ export class ProjectsComponent {
   isFetching = signal(false);
   private httpClient = inject(HttpClient);
   private destroyRef = inject(DestroyRef);
+  private projectsService = inject(ProjectsService);
+  newDialogOpen = signal(false);
 
   ngOnInit() {
     this.isFetching.set(true);
@@ -48,6 +53,16 @@ export class ProjectsComponent {
   }
 
   newProject() {
-    // this.newDialogOpen.set(true);
+    this.newDialogOpen.set(true);
+  }
+
+  createProject(project: Project) {
+    this.projectsService.createProject(project).subscribe(() => {
+      this.projects.set([...this.projects(), project]);
+    });
+  }
+
+  closeNewDialog() {
+    this.newDialogOpen.set(false);
   }
 }
