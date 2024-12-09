@@ -24,6 +24,18 @@
       >
     </li>
     <hr class="menu-divider" />
+    @if (selectedProject()) {
+    <li>
+      <a
+        routerLink="/backtest-sessions/{{ selectedProject()?.id }}"
+        routerLinkActive="active"
+        class="menu-item"
+      >
+        <mat-icon fontIcon="manage_history"></mat-icon>
+        Backtest Sessions</a
+      >
+    </li>
+    } @else {
     <li>
       <a
         routerLink="/backtest-sessions"
@@ -34,6 +46,7 @@
         Backtest Sessions</a
       >
     </li>
+    }
     <li>
       <a
         routerLink="/optimization-sessions"

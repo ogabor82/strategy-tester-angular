@@ -2,7 +2,7 @@ import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { BacktestSession } from './backtest-session.model';
 import { HttpClient } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { SessionConfigurationService } from '../session-configuration/session-configuration.service';
 import { MatButtonModule } from '@angular/material/button';
@@ -36,23 +36,26 @@ export class BacktestSessionsComponent {
   private destroyRef = inject(DestroyRef);
   private sessionConfigurationService = inject(SessionConfigurationService);
   private backtestSessionService = inject(BacktestSessionService);
+  projectId = inject(ActivatedRoute).snapshot.params['projectId'];
 
   ngOnInit() {
     this.isFetching.set(true);
-    const subscription = this.httpClient
-      .get<BacktestSession[]>('http://127.0.0.1:5000/backtest-sessions')
-      .subscribe({
-        next: (data) => {
-          this.sessions.set(data);
-        },
-        complete: () => {
-          this.isFetching.set(false);
-        },
-        error: (error) => {
-          console.error(error);
-          this.isFetching.set(false);
-        },
-      });
+    let url = 'http://127.0.0.1:5000/backtest-sessions';
+    if (this.projectId) {
+      url = `http://127.0.0.1:5000/projects/${this.projectId}/backtest-sessions`;
+    }
+    const subscription = this.httpClient.get<BacktestSession[]>(url).subscribe({
+      next: (data) => {
+        this.sessions.set(data);
+      },
+      complete: () => {
+        this.isFetching.set(false);
+      },
+      error: (error) => {
+        console.error(error);
+        this.isFetching.set(false);
+      },
+    });
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 
@@ -68,7 +71,11 @@ export class BacktestSessionsComponent {
     this.newDialogOpen.set(true);
   }
 
-  createSession(session: { name: string; details: string }) {
+  createSession(session: {
+    name: string;
+    details: string;
+    project_id?: number;
+  }) {
     this.backtestSessionService.createSession(session).subscribe((data) => {
       this.sessions.set([...this.sessions(), data]);
       this.newDialogOpen.set(false);
