@@ -38,4 +38,10 @@
   (closeModal)="newDialogOpen.set(false)"
   (createProject)="createProject($event)"
 ></app-project-new>
+} @if (deleteDialogOpen()) {
+<app-project-delete
+  [project]="selectedProjectToDelete()"
+  (closeModal)="deleteDialogOpen.set(false)"
+  (deleteProject)="deleteProject($event)"
+></app-project-delete>
 }

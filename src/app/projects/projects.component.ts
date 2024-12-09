@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
 import { ProjectsService } from './projects.service';
 import { ProjectNewComponent } from '../project-new/project-new.component';
+import { ProjectDeleteComponent } from '../project-delete/project-delete.component';
 
 @Component({
   selector: 'app-projects',
@@ -21,6 +22,7 @@ import { ProjectNewComponent } from '../project-new/project-new.component';
     MatCardModule,
     RouterLink,
     ProjectNewComponent,
+    ProjectDeleteComponent,
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
@@ -80,8 +82,13 @@ export class ProjectsComponent {
 
   deleteProject(project: Project) {
     if (!project.id) return;
-    this.projectsService.deleteProject(project.id).subscribe(() => {
-      this.projects.set(this.projects().filter((p) => p.id !== project.id));
+    this.projectsService.deleteProject(project.id).subscribe({
+      next: () => {
+        this.projects.set(this.projects().filter((p) => p.id !== project.id));
+      },
+      complete: () => {
+        this.closeDeleteDialog();
+      },
     });
   }
 
