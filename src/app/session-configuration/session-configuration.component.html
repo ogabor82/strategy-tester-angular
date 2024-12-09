@@ -1,15 +1,33 @@
 <div class="as-card session-configuration-card">
+  @if (isFullView()) {
+  <mat-icon
+    fontIcon="close_fullscreen"
+    class="full-view-toggle"
+    (click)="toggleFullView()"
+  ></mat-icon>
+  } @else {
+  <mat-icon
+    fontIcon="fullscreen"
+    class="full-view-toggle"
+    (click)="toggleFullView()"
+  ></mat-icon>
+  }
+
   <h2>Session Configuration</h2>
 
   <div class="configuration-container">
-    <div class="configuration-content">
+    <div class="configuration-content configuration-content_strategy">
       <label for="strategy">Strategy</label>
-      <div class="configuration-item as-card as-card_inverse">
-        <h4>{{ sessionConfiguration.strategy?.name }}</h4>
-        <p>{{ sessionConfiguration.strategy?.description }}</p>
+      <div class="configuration-item as-card as-card_inverse conf-card">
+        <h4 class="conf-card-title">
+          {{ sessionConfiguration.strategy?.name }}
+        </h4>
+        <p class="conf-card-description">
+          {{ sessionConfiguration.strategy?.description }}
+        </p>
       </div>
     </div>
-    <div class="configuration-content">
+    <div class="configuration-content configuration-content_backtest">
       <label for="backtest-set">Configurations:</label>
       <div class="configuration-item as-card as-card_inverse">
         @if (isFullView()) { @for (backtestSet of
@@ -34,7 +52,7 @@
         } } }
       </div>
     </div>
-    <div class="configuration-content">
+    <div class="configuration-content configuration-content_optimization">
       <label for="optimization-set">Optimization Set</label>
       <div class="optimization-set configuration-item as-card as-card_inverse">
         @if (isFullView()) { @for (optimizationSet of
@@ -81,19 +99,6 @@
         } } }
       </div>
     </div>
-    @if (isFullView()) {
-    <mat-icon
-      fontIcon="close_fullscreen"
-      class="full-view-toggle"
-      (click)="toggleFullView()"
-    ></mat-icon>
-    } @else {
-    <mat-icon
-      fontIcon="fullscreen"
-      class="full-view-toggle"
-      (click)="toggleFullView()"
-    ></mat-icon>
-    }
   </div>
 
   <div class="configuration-container">

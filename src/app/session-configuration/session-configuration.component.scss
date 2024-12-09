@@ -1,16 +1,31 @@
+.conf-card {
+  padding: 0;
+
+  &-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 4px;
+    margin: 0;
+    background-color: #9d9fa0;
+    border-radius: 10px 10px 0 0;
+
+  }
+
+  &-description {
+    font-size: 1rem;
+    font-weight: normal;
+  }
+}
+
 h2 {
   margin: 0;
   padding: 0;
 }
 
 .configuration-item {
-  width: fit-content;
+  // width: 100%;
 }
 
-.configuration-item h4 {
-  margin: 0;
-  padding: 0;
-}
 
 .configuration-item p {
   margin: 0;
@@ -20,11 +35,24 @@ h2 {
 .configuration-container {
   display: flex;
   flex-direction: row;
+  width: 100%;
   gap: 10px;
 }
 
 .configuration-content {
   height: 100%;
+
+  &_strategy {
+    flex: 2;
+  }
+
+  &_backtest {
+    flex: 2;
+  }
+
+  &_optimization {
+    flex: 6;
+  }
 }
 
 .timeframe-row {
