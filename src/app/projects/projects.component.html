@@ -1,0 +1,22 @@
+<div class="projects-header">
+  <p>Projects</p>
+  <button mat-raised-button color="primary" (click)="newProject()">
+    + Create Project
+  </button>
+</div>
+@if (isFetching()) {
+<mat-spinner></mat-spinner>
+} @else {
+<div class="projects-list">
+  @for (project of projects(); track project.id) {
+  <div class="as-card project-card">
+    <div>
+      <a [routerLink]="['/project', project.id]">
+        <h2>{{ project.name }}</h2>
+        <p>{{ project.details }}</p>
+      </a>
+    </div>
+  </div>
+  }
+</div>
+}

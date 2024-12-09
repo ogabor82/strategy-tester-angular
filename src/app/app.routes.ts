@@ -8,6 +8,7 @@ import { OptimizationSessionHeatmapsComponent } from './optimization-session-hea
 import { TickerSetsComponent } from './ticker-sets/ticker-sets.component';
 import { BacktestSessionsComponent } from './backtest-sessions/backtest-sessions.component';
 import { BacktestSessionComponent } from './backtest-session/backtest-session.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -28,5 +29,9 @@ export const routes: Routes = [
   {
     path: 'ticker-sets',
     component: TickerSetsComponent,
+  },
+  {
+    path: 'projects',
+    component: ProjectsComponent,
   },
 ];
