@@ -38,4 +38,8 @@ export const routes: Routes = [
     path: 'backtest-sessions/:projectId',
     component: BacktestSessionsComponent,
   },
+  {
+    path: 'optimization-sessions/:projectId',
+    component: OptimizationSessionsComponent,
+  },
 ];

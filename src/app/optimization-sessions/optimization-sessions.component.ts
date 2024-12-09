@@ -3,7 +3,7 @@ import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { OptimizationSession } from './optimization-session.model';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SessionConfigurationService } from '../session-configuration/session-configuration.service';
 import { MatButtonModule } from '@angular/material/button';
 import { OptimizationSessionNewComponent } from '../optimization-session-new/optimization-session-new.component';
@@ -36,11 +36,16 @@ export class OptimizationSessionsComponent implements OnInit {
   selectedOptimizationSessionToDelete = signal<OptimizationSession | undefined>(
     undefined
   );
+  projectId = inject(ActivatedRoute).snapshot.params['projectId'];
 
   ngOnInit() {
     this.isFetching.set(true);
+    let url = 'http://127.0.0.1:5000/optimization-sessions';
+    if (this.projectId) {
+      url = `http://127.0.0.1:5000/projects/${this.projectId}/optimization-sessions`;
+    }
     const subscription = this.httpClient
-      .get<OptimizationSession[]>('http://127.0.0.1:5000/optimization-sessions')
+      .get<OptimizationSession[]>(url)
       .subscribe({
         next: (data) => {
           this.sessions.set(data);
