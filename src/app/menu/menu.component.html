@@ -7,7 +7,7 @@
         routerLinkActive="active"
         class="menu-item"
       >
-        Project: {{ selectedProject()?.name }}
+        <h3>Project: {{ selectedProjectName }}</h3>
       </a>
     </li>
     }
@@ -24,10 +24,10 @@
       >
     </li>
     <hr class="menu-divider" />
-    @if (selectedProject()) {
+    @if (selectedProjectId) {
     <li>
       <a
-        routerLink="/backtest-sessions/{{ selectedProject()?.id }}"
+        [routerLink]="['/backtest-sessions', selectedProjectId]"
         routerLinkActive="active"
         class="menu-item"
       >

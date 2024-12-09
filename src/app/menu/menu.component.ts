@@ -16,4 +16,12 @@ export class MenuComponent {
   selectedProject() {
     return this.projects.selectedProject();
   }
+
+  get selectedProjectId() {
+    return this.selectedProject()?.id;
+  }
+
+  get selectedProjectName() {
+    return this.selectedProject()?.name;
+  }
 }
