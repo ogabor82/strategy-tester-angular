@@ -1,5 +1,6 @@
 .projects-header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -11,7 +12,30 @@
 
 .project-card {
   display: flex;
-  flex: 1;
   justify-content: space-between;
   align-items: center;
+}
+
+.project-card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.project-card-actions mat-icon {
+  cursor: pointer;
+}
+
+.upload-icon {
+  color: #2b9c08;
+  cursor: pointer;
+}
+
+.upload-icon_selected {
+  color: rgb(220, 219, 219);
+  cursor: default;
+  pointer-events: none;
+}
+
+.delete-icon {
+  cursor: pointer;
 }

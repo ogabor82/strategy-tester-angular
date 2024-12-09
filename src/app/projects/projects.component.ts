@@ -32,6 +32,8 @@ export class ProjectsComponent {
   private destroyRef = inject(DestroyRef);
   private projectsService = inject(ProjectsService);
   newDialogOpen = signal(false);
+  deleteDialogOpen = signal(false);
+  selectedProjectToDelete = signal<Project | null>(null);
 
   ngOnInit() {
     this.isFetching.set(true);
@@ -64,5 +66,30 @@ export class ProjectsComponent {
 
   closeNewDialog() {
     this.newDialogOpen.set(false);
+  }
+
+  openDeleteDialog(project: Project) {
+    this.deleteDialogOpen.set(true);
+    this.selectedProjectToDelete.set(project);
+  }
+
+  closeDeleteDialog() {
+    this.deleteDialogOpen.set(false);
+    this.selectedProjectToDelete.set(null);
+  }
+
+  deleteProject(project: Project) {
+    if (!project.id) return;
+    this.projectsService.deleteProject(project.id).subscribe(() => {
+      this.projects.set(this.projects().filter((p) => p.id !== project.id));
+    });
+  }
+
+  selectProject(project: Project) {
+    this.projectsService.setSelectedProject(project);
+  }
+
+  get selectedProject() {
+    return this.projectsService.getSelectedProject();
   }
 }

@@ -16,6 +16,20 @@
         <p>{{ project.details }}</p>
       </a>
     </div>
+
+    <div class="session-card-actions">
+      <mat-icon
+        fontIcon="upload_2"
+        class="upload-icon"
+        [class.upload-icon_selected]="selectedProject?.id === project.id"
+        (click)="selectProject(project)"
+      ></mat-icon>
+      <mat-icon
+        fontIcon="delete"
+        class="delete-icon"
+        (click)="openDeleteDialog(project)"
+      ></mat-icon>
+    </div>
   </div>
   }
 </div>
