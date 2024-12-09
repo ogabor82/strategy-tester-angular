@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ProjectsService } from '../projects/projects.service';
 @Component({
   selector: 'app-optimization-session-new',
   standalone: true,
@@ -12,7 +13,10 @@ export class OptimizationSessionNewComponent {
   @Output() createSession = new EventEmitter<{
     name: string;
     details: string;
+    project_id?: number;
   }>();
+
+  projectService = inject(ProjectsService);
 
   enteredName = '';
   enteredDetails = '';
@@ -29,6 +33,7 @@ export class OptimizationSessionNewComponent {
     this.createSession.emit({
       name: this.enteredName,
       details: this.enteredDetails,
+      project_id: this.projectService.selectedProject()?.id,
     });
   }
 }

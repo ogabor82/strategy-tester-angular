@@ -75,7 +75,11 @@ export class OptimizationSessionsComponent implements OnInit {
     this.newDialogOpen.set(true);
   }
 
-  createSession(session: { name: string; details: string }) {
+  createSession(session: {
+    name: string;
+    details: string;
+    project_id?: number;
+  }) {
     this.optimizationSessionService.createSession(session).subscribe((data) => {
       this.sessions.set([...this.sessions(), data]);
       this.newDialogOpen.set(false);
