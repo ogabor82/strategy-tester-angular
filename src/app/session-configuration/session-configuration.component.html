@@ -28,6 +28,18 @@
       </div>
     </div>
     <div class="configuration-content configuration-content_backtest">
+      <label for="backtest-session">Backtest Session</label>
+      <div
+        class="backtest-session configuration-item as-card as-card_inverse conf-card"
+      >
+        <h4 class="conf-card-title">
+          {{ sessionConfiguration.backtestSession?.name }}
+        </h4>
+        <p class="conf-card-description">
+          {{ sessionConfiguration.backtestSession?.details }}
+        </p>
+      </div>
+
       <label for="backtest-set">Configurations:</label>
       <div class="configuration-item as-card as-card_inverse">
         @if (isFullView()) { @for (backtestSet of
@@ -53,6 +65,17 @@
       </div>
     </div>
     <div class="configuration-content configuration-content_optimization">
+      <label for="optimization-session">Optimization Session</label>
+      <div
+        class="optimization-session configuration-item as-card as-card_inverse conf-card"
+      >
+        <h4 class="conf-card-title">
+          {{ sessionConfiguration.optimizationSession?.name }}
+        </h4>
+        <p class="conf-card-description">
+          {{ sessionConfiguration.optimizationSession?.details }}
+        </p>
+      </div>
       <label for="optimization-set">Optimization Set</label>
       <div class="optimization-set configuration-item as-card as-card_inverse">
         @if (isFullView()) { @for (optimizationSet of
@@ -137,23 +160,6 @@
           {{ timeframe.start }} - {{ timeframe.end }}
         </div>
         }
-      </div>
-    </div>
-
-    <div class="configuration-content">
-      <label for="backtest-session">Backtest Session</label>
-      <div class="backtest-session configuration-item as-card as-card_inverse">
-        <h4>{{ sessionConfiguration.backtestSession?.name }}</h4>
-        <p>{{ sessionConfiguration.backtestSession?.details }}</p>
-      </div>
-    </div>
-    <div class="configuration-content">
-      <label for="optimization-session">Optimization Session</label>
-      <div
-        class="optimization-session configuration-item as-card as-card_inverse"
-      >
-        <h4>{{ sessionConfiguration.optimizationSession?.name }}</h4>
-        <p>{{ sessionConfiguration.optimizationSession?.details }}</p>
       </div>
     </div>
     <button
