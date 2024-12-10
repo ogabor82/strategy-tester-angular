@@ -26,6 +26,30 @@
           {{ sessionConfiguration.strategy?.description }}
         </p>
       </div>
+
+      <label for="ticker-set">Ticker Set</label>
+      <div
+        class="ticker-set configuration-item as-card as-card_inverse conf-card"
+      >
+        <h4 class="conf-card-title">
+          {{ sessionConfiguration.tickerSet?.name }}
+        </h4>
+        <p class="conf-card-description">
+          {{ sessionConfiguration.tickerSet?.description }}
+        </p>
+        @for (ticker of sessionConfiguration.tickerSet?.tickers; track $index) {
+        <mat-chip class="ticker-chip"
+          >{{ ticker }}
+          <button
+            matChipRemove
+            aria-label="'remove ' + keyword"
+            (click)="removeTicker(ticker)"
+          >
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        }
+      </div>
     </div>
     <div class="configuration-content configuration-content_backtest">
       <label for="backtest-session">Backtest Session</label>
@@ -125,25 +149,7 @@
   </div>
 
   <div class="configuration-container">
-    <div class="configuration-content">
-      <label for="ticker-set">Ticker Set</label>
-      <div class="ticker-set configuration-item as-card as-card_inverse">
-        <h4>{{ sessionConfiguration.tickerSet?.name }}</h4>
-        <p>{{ sessionConfiguration.tickerSet?.description }}</p>
-        @for (ticker of sessionConfiguration.tickerSet?.tickers; track $index) {
-        <mat-chip class="ticker-chip"
-          >{{ ticker }}
-          <button
-            matChipRemove
-            aria-label="'remove ' + keyword"
-            (click)="removeTicker(ticker)"
-          >
-            <mat-icon>cancel</mat-icon>
-          </button>
-        </mat-chip>
-        }
-      </div>
-    </div>
+    <div class="configuration-content"></div>
 
     <div class="configuration-content">
       <label for="timeframe-set">Timeframe Set</label>
