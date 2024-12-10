@@ -61,8 +61,13 @@ export class ProjectsComponent {
   }
 
   createProject(project: Project) {
-    this.projectsService.createProject(project).subscribe(() => {
-      this.projects.set([...this.projects(), project]);
+    this.projectsService.createProject(project).subscribe({
+      next: (data) => {
+        this.projects.set([...this.projects(), data]);
+      },
+      complete: () => {
+        this.closeNewDialog();
+      },
     });
   }
 
