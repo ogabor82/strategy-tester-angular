@@ -1,0 +1,30 @@
+<div class="timeframe-editor">
+  <form (ngSubmit)="saveTimeframe()">
+    <input
+      id="start"
+      type="date"
+      [(ngModel)]="timeframe.start"
+      [ngModelOptions]="{ standalone: true }"
+    />
+    -
+    <input
+      id="end"
+      type="date"
+      [(ngModel)]="timeframe.end"
+      [ngModelOptions]="{ standalone: true }"
+    />
+    <mat-select
+      [(ngModel)]="timeframe.interval"
+      [ngModelOptions]="{ standalone: true }"
+    >
+      <mat-option value="1m">1m</mat-option>
+      <mat-option value="5m">5m</mat-option>
+      <mat-option value="15m">15m</mat-option>
+      <mat-option value="30m">30m</mat-option>
+      <mat-option value="1h">1h</mat-option>
+      <mat-option value="4h">4h</mat-option>
+      <mat-option value="1d">1d</mat-option>
+    </mat-select>
+    <button type="submit">Save</button>
+  </form>
+</div>

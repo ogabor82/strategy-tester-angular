@@ -9,6 +9,10 @@ import { JsonPipe } from '@angular/common';
 import { BacktestSet, OptimizationSet } from '../strategies/strategy.model';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { OptimizationSessionService } from '../optimization-sessions/optimization-session.service';
+import { TimeframeEditorComponent } from '../timeframe-editor/timeframe-editor.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'app-session-configuration',
   standalone: true,
@@ -18,6 +22,10 @@ import { OptimizationSessionService } from '../optimization-sessions/optimizatio
     MatButtonModule,
     MatProgressBarModule,
     MatIconModule,
+    TimeframeEditorComponent,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   templateUrl: './session-configuration.component.html',
   styleUrl: './session-configuration.component.scss',
@@ -29,6 +37,8 @@ export class SessionConfigurationComponent {
   isRunningBacktest = signal(false);
   isRunningOptimization = signal(false);
   isFullView = signal(false);
+  showTimeFrameEditor = signal(false);
+
   constructor(
     private sessionConfigurationService: SessionConfigurationService
   ) {}
@@ -54,7 +64,7 @@ export class SessionConfigurationComponent {
   runBacktest() {
     this.isRunningBacktest.set(true);
     this.backtestSessionService
-      .runBacktest(this.sessionConfiguration)
+      .runBacktest(this.sessionConfigurationService.getSessionConfiguration())
       .subscribe({
         next: (data) => {
           console.log(data);

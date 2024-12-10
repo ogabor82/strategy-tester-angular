@@ -159,13 +159,16 @@
         @for (timeframe of sessionConfiguration.timeframeSet?.timeframes; track
         $index) {
         <div
+          (click)="showTimeFrameEditor.set(!showTimeFrameEditor())"
           class="timeframe-row"
           [class.timeframe-row_even]="$index % 2 === 0"
           [class.timeframe-row_odd]="$index % 2 === 1"
         >
-          {{ timeframe.start }} - {{ timeframe.end }}
+          {{ timeframe.start }} - {{ timeframe.end }} ({{ timeframe.interval }})
         </div>
-        }
+        @if (showTimeFrameEditor()) {
+        <app-timeframe-editor [timeframe]="timeframe"></app-timeframe-editor>
+        } }
       </div>
     </div>
     <button

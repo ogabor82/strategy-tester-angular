@@ -1,6 +1,6 @@
 export interface Timeframe {
-  id: number;
-  name: string;
+  id?: number;
+  name?: string;
   start: string;
   end: string;
   interval: string;

@@ -41,7 +41,7 @@ export class TimeframeSetsComponent implements OnInit {
   }
 
   get selectedTimeframeSet(): TimeframeSet | undefined {
-    return this.sessionConfigurationService.getTimeframeSet();
+    return this.sessionConfigurationService.TimeframeSet;
   }
 
   selectTimeframeSet(id: number) {

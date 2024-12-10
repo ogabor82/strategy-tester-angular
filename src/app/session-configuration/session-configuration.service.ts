@@ -6,7 +6,7 @@ import {
 } from '../strategies/strategy.model';
 import { SessionConfiguration } from './session-configuration.model';
 import { TickerSet } from '../ticker-sets/ticker-set.model';
-import { TimeframeSet } from '../timeframe-sets/timeframe-set.model';
+import { Timeframe, TimeframeSet } from '../timeframe-sets/timeframe-set.model';
 import { BacktestSession } from '../backtest-sessions/backtest-session.model';
 import { OptimizationSession } from '../optimization-sessions/optimization-session.model';
 
@@ -75,7 +75,7 @@ export class SessionConfigurationService {
   }
 
   setTickerSet(tickerSet: TickerSet) {
-    this.sessionConfiguration.tickerSet = tickerSet;
+    this.sessionConfiguration.tickerSet = { ...tickerSet };
     this.saveSessionConfiguration();
   }
 
@@ -88,7 +88,19 @@ export class SessionConfigurationService {
     this.saveSessionConfiguration();
   }
 
-  getTimeframeSet(): TimeframeSet | undefined {
+  setTimeframe(timeframe: Timeframe) {
+    const newTimeframeSet: TimeframeSet = {
+      id: this.sessionConfiguration.timeframeSet?.id ?? 0,
+      name: this.sessionConfiguration.timeframeSet?.name ?? '',
+      description: this.sessionConfiguration.timeframeSet?.description ?? '',
+      timeframes: [timeframe],
+    };
+
+    this.sessionConfiguration.timeframeSet = newTimeframeSet;
+    this.saveSessionConfiguration();
+  }
+
+  get TimeframeSet(): TimeframeSet | undefined {
     return this.sessionConfiguration.timeframeSet;
   }
 
