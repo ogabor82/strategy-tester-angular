@@ -61,6 +61,24 @@
       {{ element.return | number : "1.2-2" }}%
     </td>
   </ng-container>
+  <ng-container matColumnDef="return_ratio">
+    <th mat-header-cell *matHeaderCellDef>Return Ratio</th>
+    <td mat-cell *matCellDef="let element">
+      @if (element.return_ratio > 1) {
+      <span class="positive-return"
+        >{{ element.return_ratio | number : "1.2-2" }}%</span
+      >
+      } @else if (element.return_ratio < 1 && element.return_ratio > 0.5) {
+      <span class="neutral-return"
+        >{{ element.return_ratio | number : "1.2-2" }}%</span
+      >
+      } @else {
+      <span class="negative-return"
+        >{{ element.return_ratio | number : "1.2-2" }}%</span
+      >
+      }
+    </td>
+  </ng-container>
   <ng-container matColumnDef="buyhold_return">
     <th mat-header-cell *matHeaderCellDef>Buy and Hold Return</th>
     <td mat-cell *matCellDef="let element">

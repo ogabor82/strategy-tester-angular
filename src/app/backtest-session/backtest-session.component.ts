@@ -45,6 +45,7 @@ export class BacktestSessionComponent {
     'kelly_criterion',
     'interval',
     'return',
+    'return_ratio',
     'buyhold_return',
     'win_rate',
     'max_drawdown',
@@ -86,6 +87,7 @@ export class BacktestSessionComponent {
           data.map((slice) => ({
             ...slice,
             strategy_parameters: JSON.parse(slice.strategy_parameters),
+            return_ratio: slice.return / slice.buyhold_return,
           }))
         )
       )
